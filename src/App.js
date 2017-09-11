@@ -5,7 +5,15 @@ import './App.css';
 
 class App extends Component {
   componentWillMount () {
-    this.props.dispatch({type: 'INITIALIZE_GRID'})
+    const { dispatch } = this.props
+    dispatch({type: 'INITIALIZE_GRID'})
+
+    const intervalSpeed = 500
+
+    setInterval(function() {
+      // Do something every 5 seconds
+      dispatch({type: 'NEXT_GRID_STATE'})
+    }, intervalSpeed);
   }
 
   render() {

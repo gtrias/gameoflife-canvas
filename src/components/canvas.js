@@ -11,9 +11,9 @@ class Canvas extends Component {
     // Padding
     var p = 0;
     // square height
-    var sh = 20
+    var sh = 10
     // square width
-    var sw = 20
+    var sw = 10
     const ctx = this.refs.canvas.getContext('2d');
 
     var width = window.innerWidth;
@@ -23,13 +23,17 @@ class Canvas extends Component {
 
     grid.grid.forEach((row, rowIndex) => {
       row.forEach((col, index) => {
-        let x = index * 20
-        let y = rowIndex * 20
-        ctx.rect(x, y, sw, sh);
+        let x = index * sw
+        let y = rowIndex * sh
+        if (col !== 0) {
+          ctx.fillRect(x, y, sw, sh);
+        } else {
+          ctx.rect(x, y, sw, sh);
+        }
       })
     })
 
-    ctx.strokeStyle = "black";
+    // ctx.strokeStyle = "black";
     ctx.stroke();
   }
 
