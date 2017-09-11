@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 
 class Canvas extends Component {
-  componentDidMount() {
+  componentDidUpdate() {
     this.updateCanvas(
       this.props.grid
     );
   }
 
   updateCanvas(grid) {
-    console.log(grid)
     // Padding
     var p = 0;
     // square height
@@ -22,15 +21,13 @@ class Canvas extends Component {
     this.refs.canvas.width = width
     this.refs.canvas.height = height
 
-    for (var x = 0; x <= width; x += sw) {
-      ctx.moveTo(0.5 + x + p, p);
-      ctx.lineTo(0.5 + x + p, height + p);
-    }
-
-    for (var x = 0; x <= height; x += sh) {
-      ctx.moveTo(p, 0.5 + x + p);
-      ctx.lineTo(width + p, 0.5 + x + p);
-    }
+    grid.grid.forEach((row, rowIndex) => {
+      row.forEach((col, index) => {
+        let x = index * 20
+        let y = rowIndex * 20
+        ctx.rect(x, y, sw, sh);
+      })
+    })
 
     ctx.strokeStyle = "black";
     ctx.stroke();
