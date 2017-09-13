@@ -1,0 +1,11 @@
+lang: node_js
+before_install:
+- npm i
+script:
+- npm run build
+after_success:
+- "./push.sh"
+env:
+  global:
+  - secure: 
+  - secure: qUihTLZaXi4waYpImsXN8mrs0YhjFru4ouWB5yg8x5iODXlULxVqgBxjYhleddm08Mx7qYKMtgyfsgWviurqG6PuIEf2NUCfpqrDXxauUYuhIoS2g3t5UT6p1Nq6DSiJq1rOTbNhjCI5mfhprXJ4k6TEHONCJiSlS+KBIm2rZToKA/VPaZfZUgF+IP1ZT26Vhxw+F+45UBLd9qNNt/suosqk+eVewoee4Di38UBPaQ8NAug7zC4VAI5xHlqAmqn2V04ElmcMjJzPUXWFa5CKSx3pNg7Qu8btECQzKq1J/qz0q9FdtqiVuXZRLpd4L7d6Vn5QMO0kwxz5BkZD51xLgfBIYf79s+F+1hSeK4LJjhL/QS9IQ2alGGtTCCbVOKVwRV5c41vx8QWzeNG6fXRrJu45mh9qfwwuRCLFbhsRhyKeonK7EoM0g4i/q+4Dcn9gOkkYtzPG1R86GoAur5ZmkMDifE9eQIIvdAXSQQRJXuUiwZhMYzUYQLgATbri0j5FQ7pTr7YpwCrXkxcE65jeG1cGhogtxXN1ldIG/E2VCvrA3byqqR8YjZ3DSCRGT+99HLUIhrhliBzpWQ+H+tbOZtQGMqBeROkiQ991lZv8V5TneVMYXgnUY3alQLvPxFu5O/iMDO+z9NIP7XRqcY4/6Rg/FR875ljPdPj86xDRl2o=
