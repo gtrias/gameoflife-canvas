@@ -24,18 +24,20 @@ export default function grid(state = initialState, action) {
     }
 
     case 'NEXT_GRID_STATE': {
+      // var t0 = performance.now();
+
       let newGrid = []
 
-      state.grid.forEach((row, rowIndex) => {
+      for (let rowIndex = 0; rowIndex < state.grid.length; rowIndex++) {
         let newRow = []
-        row.forEach((col, colIndex) => {
-          newRow.push(
-            shouldLive(colIndex, rowIndex, state)
-          )
-        })
+        for (let colIndex = 0; colIndex < state.grid[rowIndex].length; colIndex++) {
+          newRow[colIndex] = shouldLive(colIndex, rowIndex, state)
+        }
 
-        newGrid.push(newRow)
-      })
+        newGrid[rowIndex] = newRow
+      }
+      // var t1 = performance.now();
+      // console.log('Took', (t1 - t0).toFixed(4), 'milliseconds to generate new state');
 
       return {...state, grid: newGrid}
     }
@@ -97,25 +99,30 @@ function shouldLive(x, y, state) {
     neightbours++
   }
 
-  // Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
-  if (currentCell && neightbours < 2) {
-    return 0
+  // Is the cell alive
+  if (currentCell) {
+    // Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
+    if (neightbours < 2) {
+      return 0
+    }
+
+    // Any live cell with two or three live neighbours lives on to the next generation.
+    if (neightbours === 2 || neightbours === 3) {
+      return 1
+    }
+
+    // Any live cell with more than three live neighbours dies, as if by overpopulation.
+    if (neightbours > 3) {
+      return 0
+    }
+  // Is the cell dead
+  } else {
+    // Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+    if (neightbours === 3) {
+      return 1
+    }
   }
 
-  // Any live cell with two or three live neighbours lives on to the next generation.
-  if (currentCell && (neightbours === 2 || neightbours === 3)) {
-    return 1
-  }
-
-  // Any live cell with more than three live neighbours dies, as if by overpopulation.
-  if (currentCell && neightbours > 3) {
-    return 0
-  }
-
-  // Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
-  if (currentCell === 0 && neightbours === 3) {
-    return 1
-  }
 
   return 0
 }

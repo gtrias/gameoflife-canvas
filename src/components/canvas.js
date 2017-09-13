@@ -26,6 +26,7 @@ class Canvas extends Component {
         let x = index * sw
         let y = rowIndex * sh
         if (col !== 0) {
+          // ctx.fillStyle = "#33ff00";
           ctx.fillRect(x, y, sw, sh);
         } else {
           ctx.rect(x, y, sw, sh);
@@ -33,7 +34,8 @@ class Canvas extends Component {
       })
     })
 
-    // ctx.strokeStyle = "black";
+    // ctx.strokeStyle = "#33ff00";
+    // ctx.strokeStyle = "#1c1c1c";
     ctx.stroke();
   }
 
