@@ -8,8 +8,6 @@ class Canvas extends Component {
   }
 
   updateCanvas(grid) {
-    // Padding
-    var p = 0;
     // square height
     var sh = 10
     // square width
